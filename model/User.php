@@ -8,7 +8,7 @@
 
 class User extends DB
 {
-    public static $table_name = 'a';
+    public static $table_name = 'users';
 
     public static $required = ['first_name', 'last_name', 'username', 'password'];
 

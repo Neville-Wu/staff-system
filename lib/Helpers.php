@@ -47,18 +47,25 @@ class Helpers
 
 
     /**
-     * Rendering page file
-     * @param $url
+     * Rendering page, css and js file
+     * @param array $url
      * @param string $arr
+     * @param array $css
+     * @param array $js
+     * @param string $redirect
      */
-    public static function render($url, $arr = '')
+    public static function render($url, $arr = '', $css = [], $js = [], $redirect = false)
     {
         if ($arr) {
             foreach ($arr as $k => $v) {
                 ${$k} = $v;
             }
         }
-        include_once 'view/layout/main.php';
+        if ($redirect == false) {
+            include_once 'view/layout/main.php';
+        } else {
+            include_once $url;
+        }
     }
 
 
