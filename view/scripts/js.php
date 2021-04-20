@@ -8,9 +8,9 @@
 <script src="assets/js/stisla.js"></script>
 
 <!-- JS Libraies -->
-<?php if (isset($css)) {
-    foreach ($css as $link) {
-        echo '<link rel="stylesheet" href="' . $link . '">';
+<?php if (isset($js)) {
+    foreach ($js as $link) {
+        echo '<script src="' . $link . '"></script>';
     }
 }?>
 

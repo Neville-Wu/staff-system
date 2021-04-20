@@ -54,9 +54,9 @@ class Helpers
      * @param array $js
      * @param string $redirect
      */
-    public static function render($url, $arr = '', $css = [], $js = [], $redirect = false)
+    public static function render($url, $arr = [], $css = [], $js = [], $redirect = false)
     {
-        if ($arr) {
+        if (count($arr)) {
             foreach ($arr as $k => $v) {
                 ${$k} = $v;
             }

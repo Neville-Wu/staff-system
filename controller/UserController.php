@@ -5,7 +5,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        Helpers::render('view/user/login-unlay.php', [], [], ['css_library/bootstrap-social/bootstrap-social.css'], true);
+        Helpers::render('view/user/login-unlay.php', [], [], [], true);
     }
     /**
      * User sign up
