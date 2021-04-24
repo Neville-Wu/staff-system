@@ -88,11 +88,11 @@ class Helpers
 
 
     /**
-     * User sign in and role judgment
+     * User access authority
      * @param string $role
      * @return bool
      */
-    public static function sess($role = '')
+    public static function access($role = '')
     {
         if (isset($_SESSION['user'])) {
             if($role == ''){return true;}

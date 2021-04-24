@@ -7,8 +7,8 @@ class IndexController extends Controller
 
     public function __construct()
     {
-        if (!Helpers::sess(99) && in_array(CTRL, $this->page_restriction)) {
-            Helpers::render('404');
+        if (!Helpers::access(99) && in_array(CTRL, $this->page_restriction)) {
+//            Helpers::render('404');
             die();
         }
     }
