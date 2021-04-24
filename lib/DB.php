@@ -65,9 +65,11 @@ class DB
 
     /**
      * Insert a record
-     * @param $table
-     * @param $values
+     * @param $table : table name
+     * @param $values : an array is for insert values. (e.g ['param'=>'value'])
      * @return bool|false|PDOStatement
+     *
+     * Example - DB::insert('user', ['email' => 'test3@example.com', 'full_name' => 'Test3', 'role' => 'staff']);
      */
     public static function insert($table, $values)
     {
@@ -86,10 +88,12 @@ class DB
 
     /**
      * Update a record
-     * @param $table
-     * @param $values
-     * @param $id
+     * @param $table : table name
+     * @param $values : an array is for update values. (e.g ['param'=>'value'])
+     * @param $id : a sql condition string. (e.g 'id=4 and name="test"')
      * @return bool|false|PDOStatement
+     *
+     * Example - DB::update('user', ['full_name' => 'Test test3'], 'id = 4');
      */
     public static function update($table, $values, $id)
     {
@@ -105,9 +109,11 @@ class DB
 
     /**
      * Delete a record
-     * @param $table
-     * @param $id
+     * @param $table : table name
+     * @param $id : a sql condition string. (e.g 'id=4 and name="test"')
      * @return bool|false|PDOStatement
+     *
+     * Example - DB::delete('user','id = 4');
      */
     public static function delete($table, $id)
     {
@@ -116,9 +122,11 @@ class DB
 
     /**
      * Get table
-     * @param $table
-     * @param string $key
+     * @param $table : table name
+     * @param string $key : display column (e,g 'username, full_name')
      * @return DB
+     *
+     * DB::table('user','username, full_name');
      */
     public static function table($table, $key='*')
     {
@@ -128,9 +136,11 @@ class DB
 
     /**
      * Condition for selecting data like where, group, order by
-     * @param string $sql
-     * @param array $values
+     * @param string $sql : a sql condition string with ":name" keys. (e.g 'username = :username')
+     * @param array $values : an array for values. (e.g [':username'=>'test'])
      * @return DB
+     *
+     * Example - DB::table('user')->condition('where id = :id or id = :id2', [':id' => 4, ':id2' => 3]);
      */
     public function condition($sql = '', $values = [])
     {
@@ -142,9 +152,12 @@ class DB
     }
 
     /**
-     * Get all records
+     * Get all records from database
      * @param int $type
      * @return array
+     *
+     * Example - DB::table(...)->all()
+     * Example - DB::table(...)->condition(...)->all()
      */
     public function all($type = false)
     {
@@ -156,9 +169,12 @@ class DB
     }
 
     /**
-     * Get one record
+     * Get one record from database
      * @param int $type
      * @return mixed
+     *
+     * Example - DB::table(...)->one()
+     * Example - DB::table(...)->condition(...)->one()
      */
     public function one($type = false)
     {

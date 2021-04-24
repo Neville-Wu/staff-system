@@ -8,9 +8,9 @@
 
 class User extends DB
 {
-    public static $table_name = 'users';
+    public static $table_name = 'user';
 
-    public static $required = ['first_name', 'last_name', 'username', 'password'];
+//    public static $required = ['first_name', 'last_name', 'username', 'password'];
 
     public static function get($id = '')
     {

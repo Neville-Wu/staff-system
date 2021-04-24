@@ -10,8 +10,8 @@ class Helpers
 {
     /**
      * HTTP header jumper
-     * @param string $url
-     * @param string $arr
+     * @param string $url : a url which you want to jump on. (e.g user/index)
+     * @param string $arr : an array of param passing value. (e.g ['param'=>'value'])
      */
     public static function redirect($url = '', $arr = '')
     {
@@ -27,9 +27,9 @@ class Helpers
 
     /**
      * Javascript alert message on screen
-     * @param string $url
-     * @param $alert
-     * @param string $arr
+     * @param string $url : a url which you want to jump on. (e.g user/index)
+     * @param $alert : a message you want to pop up on the page. (e.g 'Successful login')
+     * @param string $arr : an array of param passing value. (e.g ['param'=>'value'])
      */
     public static function alert($url = '', $alert, $arr = '')
     {
@@ -48,20 +48,20 @@ class Helpers
 
     /**
      * Rendering page, css and js file
-     * @param array $url
-     * @param string $arr
-     * @param array $css
-     * @param array $js
-     * @param string $redirect
+     * @param array $url : a url which you want to jump on. (e.g user/index)
+     * @param array $arr : an array of param passing value. (e.g ['param'=>'value'])
+     * @param array $css : an array of css link for loading css file. (e.g ['assets/css/style.css'])
+     * @param array $js : an array of js link for loading js file. (e.g ['assets/js/script.js'])
+     * @param bool $layout : if false, will load main.php (layout frame). if true, will not load main.php
      */
-    public static function render($url, $arr = [], $css = [], $js = [], $redirect = false)
+    public static function render($url, $arr = [], $css = [], $js = [], $layout = false)
     {
         if (count($arr)) {
             foreach ($arr as $k => $v) {
                 ${$k} = $v;
             }
         }
-        if ($redirect == false) {
+        if ($layout == false) {
             include_once 'view/layout/main.php';
         } else {
             include_once $url;
@@ -70,10 +70,10 @@ class Helpers
 
 
     /**
-     * URL formatter
-     * @param $url
-     * @param string $arr
-     * @return string
+     * Return a URL after formatting
+     * @param $url : a url which you want to jump on. (e.g user/index)
+     * @param string $arr : an array of param passing value. (e.g ['param'=>'value'])
+     * @return string : return a url
      */
     public static function url($url, $arr = '')
     {
@@ -89,8 +89,8 @@ class Helpers
 
     /**
      * User access authority
-     * @param string $role
-     * @return bool
+     * @param string $role : a role value (e.g staff, manager)
+     * @return bool : return true or false
      */
     public static function access($role = '')
     {
