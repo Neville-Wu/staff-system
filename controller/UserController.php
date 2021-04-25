@@ -37,6 +37,12 @@ class UserController extends Controller
     }
 
 
+    public function profile()
+    {
+        Helpers::render('user/profile');
+    }
+
+
     /**
      * User sign up
      */
