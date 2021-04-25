@@ -4,6 +4,7 @@
     <li><a class="nav-link" href="<?= Helpers::url('index/index') ?>"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
 
     <li class="menu-header">Shift Management</li>
+    <li><a class="nav-link" href="<?= Helpers::url('schedule/list') ?>"><i class="fas fa-list"></i> <span>Shift list</span></a></li>
     <li><a class="nav-link" href="<?= Helpers::url('schedule/add') ?>"><i class="far fa-plus-square"></i> <span>Add a new shift</span></a></li>
 
     <li class="menu-header">User Management</li>

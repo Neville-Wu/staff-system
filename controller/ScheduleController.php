@@ -23,4 +23,10 @@ class ScheduleController extends Controller
             Helpers::render('schedule/add');
         }
     }
+
+    public function list()
+    {
+        Helpers::render('schedule/list', ['list' => Schedule::get()->all()]);
+    }
+
 }
