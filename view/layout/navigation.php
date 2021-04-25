@@ -1,16 +1,16 @@
 
 
 <ul class="sidebar-menu">
-    <li class="menu-header">Dashboard</li>
-    <li class="nav-item dropdown">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-        <ul class="dropdown-menu">
-            <li><a class="nav-link" href="index-0.html">General Dashboard</a></li>
-            <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
-        </ul>
-    </li>
+    <li><a class="nav-link" href="<?= Helpers::url('index/index') ?>"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
+
     <li class="menu-header">Shift Management</li>
-    <li class="nav-item dropdown">
+    <li><a class="nav-link" href="<?= Helpers::url('schedule/add') ?>"><i class="far fa-plus-square"></i> <span>Add a new shift</span></a></li>
+
+    <li class="menu-header">User Management</li>
+    <li><a class="nav-link" href="<?= Helpers::url('user/listUser') ?>"><i class="fas fa-users"></i> <span>List of User</span></a></li>
+
+
+    <!--<li class="nav-item dropdown">
         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
         <ul class="dropdown-menu">
             <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
@@ -18,7 +18,6 @@
             <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
         </ul>
     </li>
-    <li><a class="nav-link" href="<?= Helpers::url('schedule/add') ?>"><i class="far fa-plus-square"></i> <span>Add a new shift</span></a></li>
     <li class="nav-item dropdown">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>
         <ul class="dropdown-menu">
@@ -141,5 +140,5 @@
             <li><a href="utilities-subscribe.html">Subscribe</a></li>
         </ul>
     </li>
-    <li><a class="nav-link" href="credits.html"><i class="fas fa-pencil-ruler"></i> <span>Credits</span></a></li>
+    <li><a class="nav-link" href="credits.html"><i class="fas fa-pencil-ruler"></i> <span>Credits</span></a></li>-->
 </ul>

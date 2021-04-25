@@ -43,6 +43,12 @@ class UserController extends Controller
     }
 
 
+    public function listUser()
+    {
+        Helpers::render('user/list_user', ['userlist' => User::get()->all()]);
+    }
+
+
     /**
      * User sign up
      */
