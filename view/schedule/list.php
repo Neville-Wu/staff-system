@@ -3,9 +3,8 @@
     <div class="section-header">
         <h1>List of Shifts</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div>
-            <div class="breadcrumb-item">Table</div>
+            <div class="breadcrumb-item active"><a href="<?= Helpers::url('index/index')?>">Dashboard</a></div>
+            <div class="breadcrumb-item">Shift List</div>
         </div>
     </div>
 

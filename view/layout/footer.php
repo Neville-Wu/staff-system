@@ -1,9 +1,6 @@
 
 <footer class="main-footer">
     <div class="footer-left">
-        Copyright &copy; 2021 <div class="bullet"></div> Developed by SEPM B3-5 Team
-    </div>
-    <div class="footer-right">
-        2.3.0
+        Copyright &copy; 2021 <i class="bullet"></i> Developed by SEPM B3-5 Team
     </div>
 </footer>

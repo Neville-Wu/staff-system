@@ -1,25 +1,19 @@
 <section class="section">
     <div class="section-header">
-        <h1>Add a new shift</h1>
+        <h1>Add New Shift</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div>
-            <div class="breadcrumb-item">Table</div>
+            <div class="breadcrumb-item active"><a href="<?= Helpers::url('index/index')?>">Dashboard</a></div>
+            <div class="breadcrumb-item">Add New Shift</div>
         </div>
     </div>
 
     <div class="section-body">
-        <div class="mb-3">
-            <a href="javascript:history.go(-1)" class="btn btn-lg btn-outline-secondary rounded-pill d-md-inline-block d-block mb-5"><i class="fas fa-angle-left mr-3"></i> Go Back</a>
-            <a href="<?= Helpers::url('user/signup')?>" class="btn btn-lg btn-outline-secondary rounded-pill d-md-inline-block d-block mb-5 ml-2">Sign up</a>
-        </div>
-
         <div class="card">
             <form class="needs-validation <?= isset($errors)?'was-validated':''?>" id="form" method="post" novalidate>
                 <div class="card-body">
 
                     <?php if (isset($errors)) {?>
-                        <p class="alert alert-danger"><?= $errors?></p>
+                        <div class="alert alert-danger"><?= $errors?></div>
                     <?php }?>
 
                     <div class="form-row">

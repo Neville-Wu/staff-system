@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2021 at 05:21 PM
+-- Generation Time: May 02, 2021 at 10:26 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -43,7 +43,22 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`id`, `name`, `start_time`, `end_time`, `location`) VALUES
-(1, 'test', '2021-05-04 00:28:00', '2021-05-06 00:28:00', '2');
+(2, 'test', '2021-05-04 01:00:00', '2021-05-04 05:00:00', '2'),
+(4, 'test', '2021-05-04 06:00:00', '2021-05-04 08:00:00', '2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `time_status`
+--
+
+CREATE TABLE `time_status` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -56,7 +71,7 @@ CREATE TABLE `user` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `full_name` varchar(100) NOT NULL,
-  `perferred_name` varchar(50) NOT NULL,
+  `preferred_name` varchar(50) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `home_address` varchar(200) NOT NULL,
   `work_hours` float NOT NULL,
@@ -67,10 +82,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `password`, `full_name`, `perferred_name`, `phone`, `home_address`, `work_hours`, `role`) VALUES
+INSERT INTO `user` (`id`, `email`, `password`, `full_name`, `preferred_name`, `phone`, `home_address`, `work_hours`, `role`) VALUES
 (1, 'test1@example.com', '5a105e8b9d40e1329780d62ea2265d8a', 'Test1', '', '', '', 20, 'staff'),
 (2, 'test2@example.com', 'ad0234829205b9033196ba818f7a872b', 'Test2', '', '', '', 10, 'staff'),
-(3, 'admin1@example.com', 'e00cf25ad42683b3df678c61f42c6bda', 'Admin1', '', '', '', 10, 'manager');
+(3, 'admin1@example.com', 'e00cf25ad42683b3df678c61f42c6bda', 'Admin1', '', '', '', 10, 'manager'),
+(4, 'admin2@example.com', 'c84258e9c39059a89ab77d846ddab909', 'Admin2', '', '', '', 10, 'manager');
 
 -- --------------------------------------------------------
 
@@ -95,6 +111,13 @@ ALTER TABLE `schedule`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `time_status`
+--
+ALTER TABLE `time_status`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -116,13 +139,19 @@ ALTER TABLE `user_schedule`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `time_status`
+--
+ALTER TABLE `time_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_schedule`
@@ -133,6 +162,12 @@ ALTER TABLE `user_schedule`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `time_status`
+--
+ALTER TABLE `time_status`
+  ADD CONSTRAINT `time_status_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `user_schedule`

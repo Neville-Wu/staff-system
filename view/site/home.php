@@ -7,20 +7,15 @@
     </div>
 
     <div class="section-body">
-        <h2>Welcome to Staff System!</h2>
+        <div class="hero text-white hero-bg-image hero-bg-parallax mb-4" data-background="assets/img/unsplash/andre-benz-1214056-unsplash.jpg" style="background-image: url(&quot;assets/img/unsplash/andre-benz-1214056-unsplash.jpg&quot;);">
+            <div class="hero-inner">
+                <h2><?= Custom::greeting() . ', ' . $_SESSION['user']['full_name']?>!</h2>
+                <p class="lead">How is your day going?</p>
+            </div>
+        </div>
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Calendar</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="fc-overflow">
-                            <div id="myEvent"></div>
-                        </div>
-                    </div>
-                </div>
+        <div class="card">
+            <div class="card-body">
             </div>
         </div>
     </div>

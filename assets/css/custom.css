@@ -1,2 +1,7 @@
 /* Custom Style */
 
+.fc-event {
+    font-size: 1.25em;
+    text-align: left;
+    padding: .5em;
+}

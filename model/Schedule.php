@@ -7,14 +7,14 @@ class Schedule extends DB
     public static function get($id = '')
     {
         if ($id != '') {
-            return self::table(self::$table_name)->condition('where id='.$id);
+            return self::table(self::$table_name)->condition('where id=' . $id);
         }
         return self::table(self::$table_name);
     }
 
     public static function insert($name = '', $start_time = '', $end_time = '', $location = '')
     {
-        if($start_time <= $end_time && $location != ''){
+        if ($start_time <= $end_time && $location != '') {
             return DB::insert(self::$table_name, ['name' => $name, 'start_time' => $start_time, 'end_time' => $end_time, 'location' => $location]);
         }
         return null;
