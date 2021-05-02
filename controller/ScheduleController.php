@@ -7,7 +7,7 @@ class ScheduleController extends Controller
         if (isset($_POST['schedule']))
         {
             $post = $_POST['schedule'];
-            $schedule = Schedule::insert($post['start_time'], $post['end_time'], $post['location']);
+            $schedule = Schedule::insert($post['name'], $post['start_time'], $post['end_time'], $post['location']);
 
             if($schedule)
             {

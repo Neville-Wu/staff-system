@@ -24,6 +24,14 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
+                            <label for="name">Name *</label>
+                            <input type="text" class="form-control" value="<?= isset($data['name'])?$data['name']:''?>" id="name" name="schedule[name]" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="location">Location *</label>
+                            <input type="text" class="form-control" value="<?= isset($data['location'])?$data['location']:''?>" id="location" name="schedule[location]" required>
+                        </div>
+                        <div class="form-group col-md-6">
                             <label for="start_time">Start time *</label>
                             <input type="datetime-local" class="form-control" value="<?= isset($data['start_time'])?$data['start_time']:''?>" id="start_time" name="schedule[start_time]" required>
                         </div>
@@ -32,30 +40,6 @@
                             <input type="datetime-local" class="form-control" value="<?= isset($data['end_time'])?$data['end_time']:''?>" id="end_time" name="schedule[end_time]" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="location">Location *</label>
-                        <input type="text" class="form-control" value="<?= isset($data['location'])?$data['location']:''?>" id="location" name="schedule[location]" required>
-                    </div>
-
-
-                    <!--<div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="start_time">Start time *</label>
-                            <input type="text" class="form-control datetimepicker" value="<?/*= isset($data['start_time'])?$data['start_time']:''*/?>" id="start_time" name="schedule[start_time]" required>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="end_time">End time *</label>
-                            <input type="text" class="form-control datetimepicker" value="<?/*= isset($data['end_time'])?$data['end_time']:''*/?>" id="end_time" name="schedule[end_time]" required>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="location">Location *</label>
-                            <input type="text" class="form-control" value="<?/*= isset($data['location'])?$data['location']:''*/?>" id="location" name="schedule[location]" required>
-                        </div>
-                    </div>-->
-
-<!--                    <hr class="bg-dark mb-4">-->
                 </div>
 
                 <div class="card-footer">

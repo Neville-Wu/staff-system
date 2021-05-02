@@ -16,6 +16,7 @@
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Start Time</th>
                         <th scope="col">End Time</th>
                         <th scope="col">Location</th>
@@ -26,6 +27,7 @@
                     <?php foreach ($list as $schedule) {?>
                         <tr>
                             <th scope="row"><?= $schedule['id']?></th>
+                            <td><?= $schedule['name']?></td>
                             <td><?= $schedule['start_time']?></td>
                             <td><?= $schedule['end_time']?></td>
                             <td><?= $schedule['location']?></td>

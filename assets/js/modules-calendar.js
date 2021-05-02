@@ -2,6 +2,7 @@
 
 $("#myEvent").fullCalendar({
   height: 'auto',
+  defaultView: 'agendaWeek',
   header: {
     left: 'prev,next today',
     center: 'title',
