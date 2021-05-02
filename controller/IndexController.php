@@ -16,7 +16,7 @@ class IndexController extends Controller
 
     public function index()
     {
-        Helpers::render('site/home');
+        Helpers::render('site/home', [],['module_library/fullcalendar/dist/fullcalendar.min.css'],['module_library/fullcalendar/dist/fullcalendar.min.js','assets/js/modules-calendar.js']);
     }
 }
 
