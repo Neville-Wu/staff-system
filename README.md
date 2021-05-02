@@ -30,5 +30,5 @@ Before you start, please import the database (**staff_system_db.sql** under root
 * XAMPP 7.3.0+ (for local developed environment)
   * Download link: https://sourceforge.net/projects/xampp/files/
 * Apache 2.4
-* PHP 7.3.0 (lower than PHP 8)
+* PHP 7.3.0+ (lower than PHP 8)
 * Mysql (MariaDB 10.1.37)
