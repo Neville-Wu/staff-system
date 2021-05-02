@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2021 at 03:25 PM
+-- Generation Time: May 02, 2021 at 05:21 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `staff_system_db`
 --
+CREATE DATABASE IF NOT EXISTS `staff_system_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `staff_system_db`;
 
 -- --------------------------------------------------------
 
@@ -30,10 +32,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `schedule` (
   `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
   `location` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `name`, `start_time`, `end_time`, `location`) VALUES
+(1, 'test', '2021-05-04 00:28:00', '2021-05-06 00:28:00', '2');
 
 -- --------------------------------------------------------
 
@@ -106,13 +116,13 @@ ALTER TABLE `user_schedule`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_schedule`
