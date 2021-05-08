@@ -29,4 +29,11 @@
             <i class="fas fa-users"></i> <span>User List</span>
         </a>
     </li>
+
+    <li class="menu-header">Staff</li>
+    <li>
+        <a class="nav-link" href="<?= Helpers::url('schedule/staffCalendar') ?>">
+            <i class="far fa-calendar-alt"></i> <span>Staff Calendar</span>
+        </a>
+    </li>
 </ul>

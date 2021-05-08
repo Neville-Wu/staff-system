@@ -51,4 +51,21 @@ class ScheduleController extends Controller
         echo json_encode(Schedule::get()->all());
     }
 
+
+    public function staffCalendar()
+    {
+        Helpers::render('schedule/staff_calendar', [],['module_library/fullcalendar/dist/fullcalendar.min.css'],['module_library/fullcalendar/dist/fullcalendar.min.js','assets/js/modules-calendar.js']);
+    }
+
+    public function getStaffScheduleJson()
+    {
+        $schedule = User_Schedule::getAllocateSchedule($_SESSION['user']['id'])->all();
+        echo json_encode($schedule);
+    }
+
+    public function getTimeStatusJson()
+    {
+        $time_status = TimeStatus::get($_SESSION['user']["id"])->all();
+        echo json_encode($time_status);
+    }
 }

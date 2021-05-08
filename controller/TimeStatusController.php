@@ -1,0 +1,43 @@
+<?php
+
+class TimeStatusController extends Controller
+{
+    public $page_restriction = [
+        'staff' => ['add', 'list', 'staffCalendar'],
+        'manager' => []
+    ];
+
+    public function __construct()
+    {
+        parent::__construct();
+        if (!Helpers::access('staff') && in_array(CTRL, $this->page_restriction['staff'])) {
+            Helpers::render('view/errors/errors-403.php', [], [], [], true);
+            die();
+        }
+    }
+
+
+    public function add()
+    {
+        if (isset($_POST['time_status'])) {
+            $post = $_POST['time_status'];
+            $schedule = Schedule::insert($post['name'], $post['start_time'], $post['end_time'], $post['description']);
+
+            if ($schedule) {
+                Helpers::alert('time_status/add', 'Added successfully!');
+            } else {
+                Helpers::render('time_status/add', ['errors' => 'The start time, end time, or description was entered incorrectly.']);
+            }
+        } else {
+            Helpers::render('time_status/add');
+        }
+    }
+
+
+    public function list()
+    {
+        Helpers::render('time_status/list', ['list' => TimeStatus::get()->all()]);
+    }
+
+
+}
