@@ -3,7 +3,7 @@
 include(__DIR__."/../../../index.php");
 
 use PHPUnit\Framework\TestCase;
-//login Status test
+//Add Schedule test
 class AddScheduleTest extends TestCase{
     /** @test */
     public function Add_Schedule()
