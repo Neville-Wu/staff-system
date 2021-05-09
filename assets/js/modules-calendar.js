@@ -11,12 +11,16 @@ $("#myEvent").fullCalendar({
         center: 'title',
         right: 'month,agendaWeek,agendaDay,listWeek'
     },
+    eventClick(event, jsEvent, view) {
+        window.location.href = 'index.php?ctrl=schedule/scheduleDetail&id='+event.id;
+    },
     eventMouseover(event, jsEvent, view) {
         $(this).css('box-shadow', '0 8px 20px 5px rgba(40,40,40,.2)')
     },
     eventMouseout(event, jsEvent, view) {
         $(this).css('box-shadow', '');
     },
+
 
     eventSources: [
         {
@@ -30,6 +34,7 @@ $("#myEvent").fullCalendar({
                 arr.forEach(function (v) {
                     let c = colour[Math.floor((new Date(v.start_time).getHours()) / 3)];
                     events.push({
+                        id: v.id,
                         title: v.name,
                         start: v.start_time,
                         end: v.end_time,

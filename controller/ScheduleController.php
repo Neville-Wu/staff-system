@@ -33,6 +33,12 @@ class ScheduleController extends Controller
         }
     }
 
+    public function scheduleDetail()
+    {
+        $schedule = Schedule::get($_GET['id'])->one();
+        $user = User_Schedule::getAllocateStaff($_GET['id'])->all();
+        Helpers::render('schedule/detail', ['schedule' => $schedule, 'user'=>$user]);
+    }
 
     public function list()
     {
@@ -67,5 +73,11 @@ class ScheduleController extends Controller
     {
         $time_status = TimeStatus::get($_SESSION['user']["id"])->all();
         echo json_encode($time_status);
+    }
+
+    public function getAvailableStaff()
+    {
+        $schedule = Schedule::get($_GET['id'])->one();
+        
     }
 }

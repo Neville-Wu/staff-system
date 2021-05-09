@@ -28,4 +28,12 @@ class User_Schedule extends DB
         return self::table(self::$table_name);
     }
 
+    public static function getAllocateStaff($id = '')
+    {
+        if ($id != '') {
+            return self::table(self::$table_name)->condition('join user on user.id=user_id where schedule_id=' . $id);
+        }
+        return self::table(self::$table_name);
+    }
+
 }
