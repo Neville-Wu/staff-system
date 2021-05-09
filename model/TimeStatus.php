@@ -20,4 +20,9 @@ class TimeStatus extends DB
         return null;
     }
 
+    public static function getAvailableStaff()
+    {
+        return self::table(self::$table_name)->condition('right join user on user_id=user.id where role="staff"');
+    }
+
 }

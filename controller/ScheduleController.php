@@ -17,6 +17,12 @@ class ScheduleController extends Controller
     }
 
 
+    public function list()
+    {
+        Helpers::render('schedule/list', ['list' => Schedule::get()->all()]);
+    }
+
+
     public function add()
     {
         if (isset($_POST['schedule'])) {
@@ -33,16 +39,55 @@ class ScheduleController extends Controller
         }
     }
 
+
     public function scheduleDetail()
     {
         $schedule = Schedule::get($_GET['id'])->one();
-        $user = User_Schedule::getAllocateStaff($_GET['id'])->all();
-        Helpers::render('schedule/detail', ['schedule' => $schedule, 'user'=>$user]);
-    }
+        $user = TimeStatus::getAvailableStaff()->all();
+        $allocated = User_Schedule::getAllocateStaff($_GET['id'])->all();
+        $userstatus = [];
 
-    public function list()
-    {
-        Helpers::render('schedule/list', ['list' => Schedule::get()->all()]);
+        $allocate_id = array_map(function ($v) {
+            return $v['id'];
+        }, $allocated);
+
+        foreach ($user as $u) {
+            if (isset($u['start_time']) && isset($u['end_time'])) {
+                if (($u['start_time'] >= $schedule['end_time'] || $u['end_time'] <= $schedule['start_time'])) {
+
+                } else {
+                    $u['timestatus'] = 'unavailable';
+                    $userstatus[] = $u;
+                }
+            } else {
+                $u['timestatus'] = 'available';
+                $userstatus[] = $u;
+            }
+            foreach ($allocated as $v) {
+                if ($v['user_id'] == $u['id']) {
+                    $userstatus[count($userstatus) - 1]['status'] = $v['status'];
+                }
+            }
+        }
+
+        $err = '';
+        if (isset($_POST['allocate'])) {
+            $post = $_POST['allocate'];
+            $us = User_Schedule::allocate($post);
+
+            if ($us) {
+                Helpers::alert('schedule/scheduleDetail', 'Added successfully!', ['id'=>$post['s_id']]);
+            } else {
+                $err = 'Allocate failed, please try again.';
+            }
+        }
+
+        Helpers::render('schedule/detail', [
+            'schedule' => $schedule,
+            'userstatus' => $userstatus,
+            'allocate_id' => $allocate_id,
+            'error' => $err
+        ]);
     }
 
 
@@ -63,21 +108,17 @@ class ScheduleController extends Controller
         Helpers::render('schedule/staff_calendar', [],['module_library/fullcalendar/dist/fullcalendar.min.css'],['module_library/fullcalendar/dist/fullcalendar.min.js','assets/js/modules-calendar.js']);
     }
 
+
     public function getStaffScheduleJson()
     {
         $schedule = User_Schedule::getAllocateSchedule($_SESSION['user']['id'])->all();
         echo json_encode($schedule);
     }
 
+
     public function getTimeStatusJson()
     {
         $time_status = TimeStatus::get($_SESSION['user']["id"])->all();
         echo json_encode($time_status);
-    }
-
-    public function getAvailableStaff()
-    {
-        $schedule = Schedule::get($_GET['id'])->one();
-        
     }
 }

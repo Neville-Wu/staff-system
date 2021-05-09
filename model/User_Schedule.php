@@ -36,4 +36,9 @@ class User_Schedule extends DB
         return self::table(self::$table_name);
     }
 
+    public static function allocate($post)
+    {
+        return DB::insert(self::$table_name, ['user_id' => $post['u_id'], 'schedule_id' => $post['s_id']]);
+    }
+
 }

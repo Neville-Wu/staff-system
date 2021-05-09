@@ -19,4 +19,12 @@ class User extends DB
         }
         return self::table(self::$table_name);
     }
+
+    /*public static function getWithRole($role = '')
+    {
+        if ($role != '') {
+            return self::table(self::$table_name)->condition('where role="' . $role . '"');
+        }
+        return self::table(self::$table_name);
+    }*/
 }

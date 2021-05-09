@@ -12,11 +12,11 @@
             <form class="needs-validation <?= isset($errors)?'was-validated':''?>" id="form" method="post" novalidate>
                 <div class="card-body">
 
-                    <?php if (isset($errors)) {?>
-                        <div class="alert alert-danger"><?= $errors?></div>
+                    <?php if (!empty($error)) {?>
+                        <div class="alert alert-danger"><?= $error?></div>
                     <?php }?>
 
-
+                    <?php foreach ($user as $u)?>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -24,6 +24,8 @@
                                 <th scope="col">Full Name</th>
                                 <th scope="col">Working Hours</th>
                                 <th scope="col">Role</th>
+                                <th scope="col">Status</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
 
@@ -34,6 +36,16 @@
                                 <td><?= $u['full_name']?></td>
                                 <td><?= $u['work_hours']?></td>
                                 <td><?= $u['role']?></td>
+                                <td><?= $u['timestatus']?></td>
+                                <td>
+                                    <?php if ($u['timestatus'] == 'available') {?>
+                                        <form action="" method="post">
+                                            <input type="hidden" name="allocate[s_id]" value="<?= $_GET['id']?>">
+                                            <input type="hidden" name="allocate[u_id]" value="<?= $u['id']?>">
+                                            <button class="btn btn-success">Allocate</button>
+                                        </form>
+                                    <?php }?>
+                                </td>
                             </tr>
                         <?php }?>
                         </tbody>
