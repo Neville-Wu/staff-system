@@ -7,7 +7,7 @@ class TimeStatus extends DB
     public static function get($id = '')
     {
         if ($id != '') {
-            return self::table(self::$table_name)->condition('where id=' . $id);
+            return self::table(self::$table_name)->condition('where user_id=' . $id);
         }
         return self::table(self::$table_name);
     }

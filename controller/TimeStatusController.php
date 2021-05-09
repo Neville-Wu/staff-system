@@ -21,12 +21,12 @@ class TimeStatusController extends Controller
     {
         if (isset($_POST['time_status'])) {
             $post = $_POST['time_status'];
-            $schedule = Schedule::insert($post['name'], $post['start_time'], $post['end_time'], $post['description']);
+            $time_status = TimeStatus::insert($_SESSION['user']['id'], $post['start_time'], $post['end_time'], $post['description']);
 
-            if ($schedule) {
-                Helpers::alert('time_status/add', 'Added successfully!');
+            if ($time_status) {
+                Helpers::alert('timeStatus/add', 'Added successfully!');
             } else {
-                Helpers::render('time_status/add', ['errors' => 'The start time, end time, or description was entered incorrectly.']);
+                Helpers::render('timeStatus/add', ['errors' => 'The start time, end time, or description was entered incorrectly.']);
             }
         } else {
             Helpers::render('time_status/add');
