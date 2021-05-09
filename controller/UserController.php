@@ -69,4 +69,35 @@ class UserController extends Controller
         Helpers::render('user/list_user', ['userlist' => User::get()->all()]);
     }
 
+
+    /**
+     * setScheduleStatus
+     */
+    public function setScheduleStatus()
+    {
+        if (isset($_GET['request'])) {
+            $req = $_GET['request'];
+            $value = ['status' => $req, 'id' => $_GET['id']];
+            $u = '';
+            if ($req == 'Accepted') {
+                $u = User::setAllocationStatus($value);
+            } else if ($req == 'Rejected') {
+                $u = User::setAllocationStatus($value);
+            }
+            if ($u) {
+                Helpers::alert('index/index', 'Setting successful!');
+            } else {
+                Helpers::alert('index/index', 'Setting failed!');
+            }
+        }
+    }
+
+
+    public function listNotification()
+    {
+        $notices = User::getNoteAll();
+        Helpers::render('user/notification', ['notices'=>$notices]);
+    }
+
+
 }

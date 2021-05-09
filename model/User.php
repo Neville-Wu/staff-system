@@ -20,11 +20,22 @@ class User extends DB
         return self::table(self::$table_name);
     }
 
-    /*public static function getWithRole($role = '')
+    public static function getNoteProcess()
     {
-        if ($role != '') {
-            return self::table(self::$table_name)->condition('where role="' . $role . '"');
-        }
-        return self::table(self::$table_name);
-    }*/
+        return DB::table('user_schedule', '*, user_schedule.id s_id')
+            ->condition('join schedule s on s.id=schedule_id where status="In Processing" and user_id=' . $_SESSION['user']['id'])
+            ->all();
+    }
+
+    public static function getNoteAll()
+    {
+        return DB::table('user_schedule', '*, user_schedule.id s_id')
+            ->condition('join schedule s on s.id=schedule_id where user_id=' . $_SESSION['user']['id'])
+            ->all();
+    }
+
+    public static function setAllocationStatus($value)
+    {
+        return self::update(User_Schedule::$table_name, ['status' => $value['status']], 'id='.$value['id']);
+    }
 }
