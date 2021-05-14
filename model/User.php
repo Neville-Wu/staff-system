@@ -22,6 +22,7 @@ class User extends DB
 
     public static function getNoteProcess()
     {
+        print_r($_SESSION['user']);exit;
         return DB::table('user_schedule', '*, user_schedule.id s_id')
             ->condition('join schedule s on s.id=schedule_id where status="In Processing" and user_id=' . $_SESSION['user']['id'])
             ->all();
