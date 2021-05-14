@@ -10,7 +10,7 @@
 
         <li class="dropdown dropdown-list-toggle">
             <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg
-            <?= !empty(User::getNoteProcess()) ? 'beep' : '';?>"><i class="far fa-bell"></i></a>
+            <?= count(User::getNoteProcess()) ? 'beep' : '';?>"><i class="far fa-bell"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
                 <div class="dropdown-header">Notifications
                     <!--<div class="float-right">
@@ -20,7 +20,7 @@
 
                 <div class="dropdown-list-content dropdown-list-icons">
                     <div class="dropdown-item dropdown-item-unread">
-                        <?php if (!empty(User::getNoteProcess())) { foreach (User::getNoteProcess() as $u) {?>
+                        <?php foreach (User::getNoteProcess() as $u) {?>
                             <div class="dropdown-item-icon bg-primary text-white">
                                 <i class="fas fa-code"></i>
                             </div>
@@ -32,7 +32,7 @@
                                     <a href="<?= Helpers::url('user/setScheduleStatus', ['request' => 'Rejected', 'id'=>$u['s_id']]) ?>" class="btn btn-danger btn-sm">Reject</a>
                                 </div>
                             </div>
-                        <?php }}?>
+                        <?php }?>
                     </div>
                 </div>
 
