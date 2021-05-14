@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2021 at 10:26 PM
+-- Generation Time: May 14, 2021 at 07:44 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -60,6 +60,14 @@ CREATE TABLE `time_status` (
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `time_status`
+--
+
+INSERT INTO `time_status` (`id`, `user_id`, `start_time`, `end_time`, `description`) VALUES
+(1, 1, '2021-05-04 00:00:00', '2021-05-04 03:00:00', ''),
+(2, 1, '2021-05-04 12:00:00', '2021-05-04 13:00:00', '');
+
 -- --------------------------------------------------------
 
 --
@@ -86,7 +94,8 @@ INSERT INTO `user` (`id`, `email`, `password`, `full_name`, `preferred_name`, `p
 (1, 'test1@example.com', '5a105e8b9d40e1329780d62ea2265d8a', 'Test1', '', '', '', 20, 'staff'),
 (2, 'test2@example.com', 'ad0234829205b9033196ba818f7a872b', 'Test2', '', '', '', 10, 'staff'),
 (3, 'admin1@example.com', 'e00cf25ad42683b3df678c61f42c6bda', 'Admin1', '', '', '', 10, 'manager'),
-(4, 'admin2@example.com', 'c84258e9c39059a89ab77d846ddab909', 'Admin2', '', '', '', 10, 'manager');
+(4, 'admin2@example.com', 'c84258e9c39059a89ab77d846ddab909', 'Admin2', '', '', '', 10, 'manager'),
+(5, 'test3@example.com', '8ad8757baa8564dc136c1e07507f4a98', 'Test3', '', '', '', 10, 'staff');
 
 -- --------------------------------------------------------
 
@@ -97,8 +106,17 @@ INSERT INTO `user` (`id`, `email`, `password`, `full_name`, `preferred_name`, `p
 CREATE TABLE `user_schedule` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `schedule_id` int(11) NOT NULL
+  `schedule_id` int(11) NOT NULL,
+  `status` enum('In Processing','Accepted','Rejected') NOT NULL DEFAULT 'In Processing'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user_schedule`
+--
+
+INSERT INTO `user_schedule` (`id`, `user_id`, `schedule_id`, `status`) VALUES
+(1, 2, 2, 'Rejected'),
+(2, 5, 2, 'In Processing');
 
 --
 -- Indexes for dumped tables
@@ -145,19 +163,19 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `time_status`
 --
 ALTER TABLE `time_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_schedule`
 --
 ALTER TABLE `user_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
