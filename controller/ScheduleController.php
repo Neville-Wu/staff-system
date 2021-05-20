@@ -52,9 +52,18 @@ class ScheduleController extends Controller
         }, $allocated);
 
         foreach ($user as $u) {
-            if (isset($u['start_time']) && isset($u['end_time'])) {
+            if (!empty($u['start_time']) && !empty($u['end_time'])) {
                 if (($u['start_time'] >= $schedule['end_time'] || $u['end_time'] <= $schedule['start_time'])) {
-
+                    $mark = 0;
+                    foreach ($userstatus as $us) {
+                        if ($us['user_id'] == $u['user_id']) {
+                            $mark++;
+                        }
+                    }
+                    if ($mark == 0) {
+                        $u['timestatus'] = 'available';
+                        $userstatus[] = $u;
+                    }
                 } else {
                     $u['timestatus'] = 'unavailable';
                     $userstatus[] = $u;

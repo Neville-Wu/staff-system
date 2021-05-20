@@ -20,6 +20,11 @@ class User extends DB
         return self::table(self::$table_name);
     }
 
+    public static function editProfile($arr, $id)
+    {
+        return DB::update(self::$table_name, $arr, 'id=' . $id);
+    }
+
     public static function getNoteProcess()
     {
         return DB::table('user_schedule', '*, user_schedule.id s_id')

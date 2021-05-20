@@ -61,7 +61,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-6 col-12">
-                                    <label for="full_name">Full Name</label>
+                                    <label for="full_name">Full Name *</label>
                                     <input type="text" id="full_name" class="form-control" name="user[full_name]" value="<?= $_SESSION['user']['full_name']?>" required="">
                                     <div class="invalid-feedback">
                                         Please fill in the first name
@@ -72,7 +72,7 @@
                                     <input type="text" id="preferred_name" class="form-control" name="user[preferred_name]" value="<?= $_SESSION['user']['preferred_name']?>">
                                 </div>
                                 <div class="form-group col-md-6 col-12">
-                                    <label for="email">Email</label>
+                                    <label for="email">Email *</label>
                                     <input type="email" id="email" class="form-control" name="user[email]" value="<?= $_SESSION['user']['email']?>" required="">
                                     <div class="invalid-feedback">
                                         Please fill in the email
@@ -85,6 +85,33 @@
                                 <div class="form-group col-12">
                                     <label for="home_address">Address</label>
                                     <input type="text" id="home_address" class="form-control" name="user[home_address]" value="<?= $_SESSION['user']['home_address'] ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card">
+                    <form method="post" class="needs-validation" novalidate="">
+                        <div class="card-header">
+                            <h4>Change Password</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <?php if (isset($errors)) {?>
+                                <div class="alert alert-danger"><?= $errors?></div>
+                            <?php }?>
+
+                            <div class="row">
+                                <div class="form-group col-md-6 col-12">
+                                    <label for="pwd">Password *</label>
+                                    <input type="password" id="pwd" class="form-control" name="pwd[password]" required="">
+                                </div>
+                                <div class="form-group col-md-6 col-12">
+                                    <label for="repwd">Confirm Password *</label>
+                                    <input type="password" id="repwd" class="form-control" name="pwd[repwd]" required="">
                                 </div>
                             </div>
                         </div>
