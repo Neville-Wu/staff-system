@@ -59,6 +59,7 @@ class ScheduleController extends Controller
         $schedule = Schedule::get($_GET['id'])->one();
         $user = TimeStatus::getAvailableStaff()->all();
         $allocated = User_Schedule::getAllocateStaff($_GET['id'])->all();
+        $remain = User_Schedule::getRemainHours()->all();
         $userstatus = [];
 
         $allocate_id = array_map(function ($v) {
@@ -89,6 +90,13 @@ class ScheduleController extends Controller
             foreach ($allocated as $v) {
                 if ($v['user_id'] == $u['id']) {
                     $userstatus[count($userstatus) - 1]['status'] = $v['status'];
+                }
+            }
+            foreach ($remain as $v) {
+                if ($v['user_id'] == $u['id']) {
+                    $userstatus[count($userstatus) - 1]['hours'] = $u['work_hours'] - $v['hours'];
+                } else {
+                    $userstatus[count($userstatus) - 1]['hours'] = $u['work_hours'];
                 }
             }
         }

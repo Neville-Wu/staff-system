@@ -18,6 +18,7 @@
                         <th scope="col">Full Name</th>
                         <th scope="col">Working Hours</th>
                         <th scope="col">Role</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
 
@@ -28,6 +29,9 @@
                             <td><?= $user['full_name']?></td>
                             <td><?= $user['work_hours']?></td>
                             <td><?= $user['role']?></td>
+                            <td>
+                                <a href="<?= Helpers::url('user/changeHours',['id'=>$user['id']]) ?>" class="btn btn-primary">Change Work Hours</a>
+                            </td>
                         </tr>
                     <?php }?>
                     </tbody>

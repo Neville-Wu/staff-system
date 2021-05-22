@@ -41,4 +41,10 @@ class User_Schedule extends DB
         return DB::insert(self::$table_name, ['user_id' => $post['u_id'], 'schedule_id' => $post['s_id']]);
     }
 
+    public static function getRemainHours()
+    {
+        return self::table(self::$table_name, 'user_id, SUM(TIMESTAMPDIFF(HOUR,start_time,end_time)) AS hours')
+            ->condition('join schedule on schedule.id=schedule_id where status="Accepted" group by user_id');
+    }
+
 }

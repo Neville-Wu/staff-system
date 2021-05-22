@@ -97,6 +97,20 @@ class UserController extends Controller
     }
 
 
+    public function changeHours()
+    {
+        if (isset($_POST['hours'])) {
+            $post = $_POST['hours'];
+
+            $us = User::editProfile(['work_hours' => $post], $_GET['id']);
+            if ($us) {
+                Helpers::alert('user/listUser', 'Changed Work Hours successfully!');
+            }
+        }
+        Helpers::render('user/change_hours', ['user' => User::get($_GET['id'])->one()]);
+    }
+
+
     /**
      * setScheduleStatus
      */

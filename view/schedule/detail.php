@@ -72,6 +72,7 @@
                                     <th scope="col">ID</th>
                                     <th scope="col">Full Name</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Remain Hours</th>
                                     <th scope="col"></th>
                                 </tr>
                                 </thead>
@@ -82,19 +83,22 @@
                                         <th scope="row"><?= $u['id'] ?></th>
                                         <td><?= $u['full_name'] ?></td>
                                         <td><?= $u['timestatus'] ?></td>
+                                        <td><?= $u['hours'] ?></td>
                                         <td>
                                             <?php if (isset($u['status']) && $u['status'] == 'In Processing') { ?>
                                                 <div class="badge badge-secondary"><?= $u['status'] ?></div>
                                             <?php } else if (!in_array($u['id'], $allocate_id) &&
-                                                    $u['timestatus'] == 'available') { ?>
+                                                    $u['timestatus'] == 'available') {
+                                                if ((new DateTime($schedule['start_time']))
+                                                        ->diff(new DateTime($schedule['end_time']))->h <= $u['hours']) {?>
                                                 <form action="" method="post">
                                                     <input type="hidden" name="allocate[s_id]"
                                                            value="<?= $_GET['id'] ?>">
                                                     <input type="hidden" name="allocate[u_id]" value="<?= $u['id'] ?>">
                                                     <button class="btn btn-success">Allocate</button>
                                                 </form>
-                                            <?php } else if (isset($u['status'])) {?>
-                                                <div class="badge badge-danger"><?= $u['status'] ?></div>
+                                            <?php }} else if (isset($u['status'])) {?>
+                                                <div class="badge badge-info"><?= $u['status'] ?></div>
                                             <?php } ?>
                                         </td>
                                     </tr>
