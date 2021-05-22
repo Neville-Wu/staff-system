@@ -48,4 +48,14 @@ class User extends DB
     {
         return self::update(User_Schedule::$table_name, ['status' => $value['status']], 'id='.$value['id']);
     }
+
+    public static function activateAccount($value)
+    {
+        return self::update(self::$table_name, ['mode' => $value['mode']], 'id=' . $value['id']);
+    }
+
+    public static function deactivateAccount($value)
+    {
+        return self::update(self::$table_name, ['mode' => $value['mode']], 'id=' . $value['id']);
+    }
 }

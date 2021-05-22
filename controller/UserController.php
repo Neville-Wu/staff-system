@@ -155,4 +155,26 @@ class UserController extends Controller
             Helpers::render('user/create_account');
         }
     }
+
+    public function activateAccount()
+    {
+        if (isset($_GET['id'])) {
+            $value = ['mode' => 'activated', 'id' => $_GET['id']];
+            $us = User::activateAccount($value);
+            if ($us) {
+                Helpers::alert('user/listUser', 'Activated successfully!');
+            }
+        }
+    }
+
+    public function deactivateAccount()
+    {
+        if (isset($_GET['id'])) {
+            $value = ['mode' => 'deactivated', 'id' => $_GET['id']];
+            $us = User::deactivateAccount($value);
+            if ($us) {
+                Helpers::alert('user/listUser', 'Deactivated successfully!');
+            }
+        }
+    }
 }
