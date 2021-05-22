@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2021 at 02:37 PM
+-- Generation Time: May 22, 2021 at 04:32 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -23,6 +23,27 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `staff_system_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `staff_system_db`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification`
+--
+
+CREATE TABLE `notification` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `message` varchar(200) NOT NULL,
+  `status` enum('unread','read') NOT NULL DEFAULT 'unread',
+  `datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`id`, `user_id`, `message`, `status`, `datetime`) VALUES
+(1, 1, 'Your work hours have been changed to 20.', 'read', '2021-05-22 23:15:00');
 
 -- --------------------------------------------------------
 
@@ -92,7 +113,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `full_name`, `preferred_name`, `phone`, `home_address`, `work_hours`, `role`, `mode`) VALUES
-(1, 'test1@example.com', '5a105e8b9d40e1329780d62ea2265d8a', 'Test1', '', '', '', 22, 'staff', 'deactivated'),
+(1, 'test1@example.com', '5a105e8b9d40e1329780d62ea2265d8a', 'Test1', '', '', '', 20, 'staff', 'activated'),
 (2, 'test2@example.com', 'ad0234829205b9033196ba818f7a872b', 'Test2', '', '', '', 10, 'staff', 'activated'),
 (3, 'admin1@example.com', 'e00cf25ad42683b3df678c61f42c6bda', 'Admin1', 'aaaa', '123132123', 'iseflisdfvargaerg', 10, 'manager', 'activated'),
 (4, 'admin2@example.com', 'c84258e9c39059a89ab77d846ddab909', 'Admin2', '', '', '', 10, 'manager', 'activated'),
@@ -123,6 +144,13 @@ INSERT INTO `user_schedule` (`id`, `user_id`, `schedule_id`, `status`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `schedule`
@@ -156,6 +184,12 @@ ALTER TABLE `user_schedule`
 --
 
 --
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
@@ -182,6 +216,12 @@ ALTER TABLE `user_schedule`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `notification`
+--
+ALTER TABLE `notification`
+  ADD CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `time_status`

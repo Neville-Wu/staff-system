@@ -103,7 +103,12 @@ class UserController extends Controller
             $post = $_POST['hours'];
 
             $us = User::editProfile(['work_hours' => $post], $_GET['id']);
-            if ($us) {
+            $msg = Notification::sendMessage([
+                'user_id' => $_GET['id'],
+                'message' => 'Your work hours have been changed to ' . $post . ' hours per week.',
+                'datetime' => date('Y-m-d H:i')
+            ]);
+            if ($us && $msg) {
                 Helpers::alert('user/listUser', 'Changed Work Hours successfully!');
             }
         }
@@ -136,8 +141,16 @@ class UserController extends Controller
 
     public function listNotification()
     {
+        if (isset($_GET['read'])) {
+            $get = $_GET['read'];
+
+            $mark = User::markRead($get);
+            if ($mark) {
+                Helpers::redirect('user/listNotification');
+            }
+        }
         $notices = User::getNoteAll();
-        Helpers::render('user/notification', ['notices'=>$notices]);
+        Helpers::render('user/notification', ['schedule'=>$notices[0], 'notification'=>$notices[1]]);
     }
 
     public function createAccount()
