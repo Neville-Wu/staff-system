@@ -23,6 +23,7 @@ class UserController extends Controller
      */
     public function login()
     {
+
         if (isset($_POST['login'])) {
             $post = $_POST['login'];
             $user = User::get()->condition('where email = :email and password = :password',
