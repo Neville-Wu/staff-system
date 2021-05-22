@@ -57,6 +57,32 @@ class UserController extends Controller
      */
     public function profile()
     {
+        if (isset($_POST['user'])) {
+            $post = $_POST['user'];
+            $us = User::editProfile($post, $_SESSION['user']['id']);
+
+            if ($us) {
+                $_SESSION['user'] = User::get($_SESSION['user']['id'])->one();
+                Helpers::alert('user/profile', 'Edited successfully!');
+            }
+        }
+
+        $errors = '';
+        if (isset($_POST['pwd'])) {
+            $post = $_POST['pwd'];
+            if ($post['password'] != $post['repwd']) {
+                $errors = 'The password and confirm password are not match';
+                Helpers::render('user/profile');
+                exit;
+            }
+            unset($post['repwd']);
+            $us = User::editProfile(['password'=>md5($post['password'])], $_SESSION['user']['id']);
+
+            if ($us) {
+                $_SESSION['user'] = User::get($_SESSION['user']['id'])->one();
+                Helpers::alert('user/profile', 'Changed Password successfully!');
+            }
+        }
         Helpers::render('user/profile');
     }
 

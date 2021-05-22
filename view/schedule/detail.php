@@ -88,6 +88,8 @@
                                                     <input type="hidden" name="allocate[u_id]" value="<?= $u['id'] ?>">
                                                     <button class="btn btn-success">Allocate</button>
                                                 </form>
+                                            <?php } else if (isset($u['status'])) {?>
+                                                <div class="badge badge-danger"><?= $u['status'] ?></div>
                                             <?php } ?>
                                         </td>
                                     </tr>

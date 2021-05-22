@@ -24,9 +24,9 @@ class TimeStatusController extends Controller
             $time_status = TimeStatus::insert($_SESSION['user']['id'], $post['start_time'], $post['end_time'], $post['description']);
 
             if ($time_status) {
-                Helpers::alert('timeStatus/add', 'Added successfully!');
+                Helpers::alert('time_status/add', 'Added successfully!');
             } else {
-                Helpers::render('timeStatus/add', ['errors' => 'The start time, end time, or description was entered incorrectly.']);
+                Helpers::render('time_status/add', ['errors' => 'The start time, end time, or description was entered incorrectly.']);
             }
         } else {
             Helpers::render('time_status/add');
