@@ -41,4 +41,9 @@
             <i class="far fa-calendar-alt"></i> <span>Staff Calendar</span>
         </a>
     </li>
+    <li>
+        <a class="nav-link" href="<?= Helpers::url('schedule/getAllocationHistory') ?>">
+            <i class="far fa-calendar-alt"></i> <span>Allocation History</span>
+        </a>
+    </li>
 </ul>

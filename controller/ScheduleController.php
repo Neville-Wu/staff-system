@@ -152,4 +152,10 @@ class ScheduleController extends Controller
         $time_status = TimeStatus::get($_SESSION['user']["id"])->all();
         echo json_encode($time_status);
     }
+
+    public function getAllocationHistory()
+    {
+        $history = User_Schedule::getAllocateSchedule($_SESSION['user']['id'])->all();
+        Helpers::render('schedule/allocation_history', ['history' => $history]);
+    }
 }
