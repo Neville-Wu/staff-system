@@ -29,6 +29,11 @@
             <i class="fas fa-users"></i> <span>User List</span>
         </a>
     </li>
+    <li>
+        <a class="nav-link" href="<?= Helpers::url('user/createAccount') ?>">
+            <i class="fas fa-users"></i> <span>Create Account</span>
+        </a>
+    </li>
 
     <li class="menu-header">Staff</li>
     <li>

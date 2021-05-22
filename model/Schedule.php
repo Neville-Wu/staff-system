@@ -20,4 +20,11 @@ class Schedule extends DB
         return null;
     }
 
+    public static function editDuration($start_time, $end_time, $id)
+    {
+        if($start_time <= $end_time){
+            return DB::update(self::$table_name, ['start_time' => $start_time, 'end_time' => $end_time], 'id=' . $id);
+        }
+        return null;
+    }
 }

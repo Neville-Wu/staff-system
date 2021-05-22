@@ -39,6 +39,20 @@ class ScheduleController extends Controller
         }
     }
 
+    public function editDuration()
+    {
+        if (isset($_POST['schedule'])) {
+            $post = $_POST['schedule'];
+            $us = Schedule::editDuration($post['start_time'], $post['end_time'], $_GET['id']);
+
+            if ($us) {
+                Helpers::alert('schedule/scheduleDetail', 'Edited successfully!', ['id'=>$_GET['id']]);
+            }
+        } else {
+            $schedule = Schedule::get($_GET['id'])->one();
+            Helpers::render('schedule/change_duration', ['schedule'=>$schedule]);
+        }
+    }
 
     public function scheduleDetail()
     {

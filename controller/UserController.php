@@ -126,5 +126,19 @@ class UserController extends Controller
         Helpers::render('user/notification', ['notices'=>$notices]);
     }
 
+    public function createAccount()
+    {
+        if (isset($_POST['user'])) {
+            $post = $_POST['user'];
+            $user = User::createAccount($post['email'], md5($post['password']), $post['full_name'], $post['work_hours'], $post['role']);
 
+            if ($user) {
+                Helpers::alert('user/listUser', 'Added successfully!');
+            } else {
+                Helpers::render('user/create_account', ['errors' => 'The email, password, full name or work hours was entered incorrectly.']);
+            }
+        } else {
+            Helpers::render('user/create_account');
+        }
+    }
 }

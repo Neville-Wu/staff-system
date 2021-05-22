@@ -25,6 +25,11 @@ class User extends DB
         return DB::update(self::$table_name, $arr, 'id=' . $id);
     }
 
+    public static function createAccount($email = '', $password = '', $full_name = '', $work_hours = '', $role = '')
+    {
+        return DB::insert(self::$table_name, ['email' => $email, 'password' => $password, 'full_name' => $full_name, 'work_hours' => $work_hours, 'role' => $role]);
+    }
+
     public static function getNoteProcess()
     {
         return DB::table('user_schedule', '*, user_schedule.id s_id')
