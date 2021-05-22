@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2021 at 07:44 AM
+-- Generation Time: May 22, 2021 at 02:37 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -66,7 +66,7 @@ CREATE TABLE `time_status` (
 
 INSERT INTO `time_status` (`id`, `user_id`, `start_time`, `end_time`, `description`) VALUES
 (1, 1, '2021-05-04 00:00:00', '2021-05-04 03:00:00', ''),
-(2, 1, '2021-05-04 12:00:00', '2021-05-04 13:00:00', '');
+(2, 2, '2021-05-04 12:00:00', '2021-05-04 13:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -83,19 +83,20 @@ CREATE TABLE `user` (
   `phone` varchar(20) NOT NULL,
   `home_address` varchar(200) NOT NULL,
   `work_hours` float NOT NULL,
-  `role` enum('manager','staff') NOT NULL
+  `role` enum('manager','staff') NOT NULL,
+  `mode` enum('activated','deactivated') NOT NULL DEFAULT 'activated'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `password`, `full_name`, `preferred_name`, `phone`, `home_address`, `work_hours`, `role`) VALUES
-(1, 'test1@example.com', '5a105e8b9d40e1329780d62ea2265d8a', 'Test1', '', '', '', 20, 'staff'),
-(2, 'test2@example.com', 'ad0234829205b9033196ba818f7a872b', 'Test2', '', '', '', 10, 'staff'),
-(3, 'admin1@example.com', 'e00cf25ad42683b3df678c61f42c6bda', 'Admin1', '', '', '', 10, 'manager'),
-(4, 'admin2@example.com', 'c84258e9c39059a89ab77d846ddab909', 'Admin2', '', '', '', 10, 'manager'),
-(5, 'test3@example.com', '8ad8757baa8564dc136c1e07507f4a98', 'Test3', '', '', '', 10, 'staff');
+INSERT INTO `user` (`id`, `email`, `password`, `full_name`, `preferred_name`, `phone`, `home_address`, `work_hours`, `role`, `mode`) VALUES
+(1, 'test1@example.com', '5a105e8b9d40e1329780d62ea2265d8a', 'Test1', '', '', '', 22, 'staff', 'deactivated'),
+(2, 'test2@example.com', 'ad0234829205b9033196ba818f7a872b', 'Test2', '', '', '', 10, 'staff', 'activated'),
+(3, 'admin1@example.com', 'e00cf25ad42683b3df678c61f42c6bda', 'Admin1', 'aaaa', '123132123', 'iseflisdfvargaerg', 10, 'manager', 'activated'),
+(4, 'admin2@example.com', 'c84258e9c39059a89ab77d846ddab909', 'Admin2', '', '', '', 10, 'manager', 'activated'),
+(5, 'test3@example.com', '8ad8757baa8564dc136c1e07507f4a98', 'Test3', '', '', '', 10, 'staff', 'activated');
 
 -- --------------------------------------------------------
 
@@ -115,8 +116,9 @@ CREATE TABLE `user_schedule` (
 --
 
 INSERT INTO `user_schedule` (`id`, `user_id`, `schedule_id`, `status`) VALUES
-(1, 2, 2, 'Rejected'),
-(2, 5, 2, 'In Processing');
+(1, 1, 2, 'Accepted'),
+(2, 5, 2, 'In Processing'),
+(4, 2, 4, 'In Processing');
 
 --
 -- Indexes for dumped tables
@@ -175,7 +177,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_schedule`
 --
 ALTER TABLE `user_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

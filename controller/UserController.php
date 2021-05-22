@@ -26,7 +26,7 @@ class UserController extends Controller
 
         if (isset($_POST['login'])) {
             $post = $_POST['login'];
-            $user = User::get()->condition('where email = :email and password = :password',
+            $user = User::get()->condition('where email = :email and password = :password and mode="activated"',
                 [':email'=>$post['email'], ':password'=>md5($post['password'])])->all();
 
             if (count($user)) {

@@ -12,14 +12,14 @@
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-header"><h3>Schedule Detail</h3></div>
-                    <div class="mb-4">
-                        <a class="btn btn-success" href="<?= Helpers::url('schedule/editDuration',['id'=>$_GET['id']]) ?>">
-                            <i class="far fa-calendar-plus"></i> <span>Change Duration</span>
-                        </a>
-                    </div>
                     <form class="needs-validation <?= isset($errors) ? 'was-validated' : '' ?>" id="form" method="post"
                           novalidate>
                         <div class="card-body">
+                            <div class="mb-4">
+                                <a class="btn btn-success" href="<?= Helpers::url('schedule/editDuration',['id'=>$_GET['id']]) ?>">
+                                    <i class="far fa-calendar-plus"></i> <span>Change Duration</span>
+                                </a>
+                            </div>
 
                             <?php if (isset($errors)) { ?>
                                 <div class="alert alert-danger"><?= $errors ?></div>
