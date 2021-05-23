@@ -17,6 +17,9 @@ class TimeStatusController extends Controller
     }
 
 
+    /**
+     * Add unavailable time
+     */
     public function add()
     {
         if (isset($_POST['time_status'])) {
@@ -31,12 +34,6 @@ class TimeStatusController extends Controller
         } else {
             Helpers::render('time_status/add');
         }
-    }
-
-
-    public function list()
-    {
-        Helpers::render('time_status/list', ['list' => TimeStatus::get()->all()]);
     }
 
 

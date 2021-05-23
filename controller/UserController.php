@@ -72,8 +72,8 @@ class UserController extends Controller
         if (isset($_POST['pwd'])) {
             $post = $_POST['pwd'];
             if ($post['password'] != $post['repwd']) {
-                $errors = 'The password and confirm password are not match';
-                Helpers::render('user/profile');
+                $errors = 'The password and confirm password were not matched';
+                Helpers::render('user/profile', ['errors'=>$errors]);
                 exit;
             }
             unset($post['repwd']);

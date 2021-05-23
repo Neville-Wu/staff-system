@@ -19,31 +19,33 @@
                 </div>
 
                 <div class="dropdown-list-content dropdown-list-icons">
+                    <?php foreach (User::getNoteProcess() as $u) {?>
                     <div class="dropdown-item dropdown-item-unread">
-                        <?php foreach (User::getNoteProcess() as $u) {?>
-                            <div class="dropdown-item-icon bg-primary text-white">
-                                <i class="fas fa-clipboard-list"></i>
+                        <div class="dropdown-item-icon bg-primary text-white">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="dropdown-item-desc">
+                            Are you satisfied with this allocation?
+                            <div><?= $u['start_time'] . ' - ' . $u['end_time'];?></div>
+                            <div>
+                                <a href="<?= Helpers::url('user/setScheduleStatus', ['request' => 'Accepted', 'id'=>$u['s_id']]) ?>" class="btn btn-success btn-sm">Accept</a>
+                                <a href="<?= Helpers::url('user/setScheduleStatus', ['request' => 'Rejected', 'id'=>$u['s_id']]) ?>" class="btn btn-danger btn-sm">Reject</a>
                             </div>
-                            <div class="dropdown-item-desc">
-                                Are you satisfied with this allocation?
-                                <div><?= $u['start_time'] . ' - ' . $u['end_time'];?></div>
-                                <div>
-                                    <a href="<?= Helpers::url('user/setScheduleStatus', ['request' => 'Accepted', 'id'=>$u['s_id']]) ?>" class="btn btn-success btn-sm">Accept</a>
-                                    <a href="<?= Helpers::url('user/setScheduleStatus', ['request' => 'Rejected', 'id'=>$u['s_id']]) ?>" class="btn btn-danger btn-sm">Reject</a>
-                                </div>
-                            </div>
-                        <?php }?>
-
-                        <?php foreach (Notification::getUnreadNote() as $u) {?>
-                            <div class="dropdown-item-icon bg-info text-white">
-                                <i class="fas fa-comment-dots"></i>
-                            </div>
-                            <div class="dropdown-item-desc">
-                                <?= $u['message'];?>
-                                <div class="time"><?= $u['datetime']?></div>
-                            </div>
-                        <?php }?>
+                        </div>
                     </div>
+                    <?php }?>
+
+                    <?php foreach (Notification::getUnreadNote() as $u) { ?>
+                    <div class="dropdown-item dropdown-item-unread">
+                        <div class="dropdown-item-icon bg-info text-white">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <div class="dropdown-item-desc">
+                            <?= $u['message']; ?>
+                            <div class="time"><?= $u['datetime'] ?></div>
+                        </div>
+                    </div>
+                    <?php } ?>
                 </div>
 
                 <div class="dropdown-footer text-center">

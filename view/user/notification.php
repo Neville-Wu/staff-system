@@ -34,7 +34,7 @@
                             <td><?= $n['status']?></td>
                             <td>
                                 <?php if ($n['status'] == 'In Processing') {?>
-                                    <span>Are you satisfied with this allocation?</span>
+                                    <span>Do you accept with this allocation?</span>
                                 <?php }?>
                             </td>
                             <td>
@@ -78,7 +78,7 @@
                             <td>
                                 <?php if ($n['status'] == 'unread') {?>
                                     <a href="<?= Helpers::url('user/listNotification', ['read' => $n['id']]) ?>"
-                                       class="btn btn-outline-white btn-round">
+                                       class="btn btn-outline-white">
                                         Mark Read
                                     </a>
                                 <?php }?>

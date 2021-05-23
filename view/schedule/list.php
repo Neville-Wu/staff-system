@@ -19,6 +19,7 @@
                         <th scope="col">Start Time</th>
                         <th scope="col">End Time</th>
                         <th scope="col">Location</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
 
@@ -30,6 +31,9 @@
                             <td><?= $schedule['start_time']?></td>
                             <td><?= $schedule['end_time']?></td>
                             <td><?= $schedule['location']?></td>
+                            <td>
+                                <a href="<?= Helpers::url('schedule/scheduleDetail', ['id' => $schedule['id']]) ?>" class="btn btn-primary">Allocate</a>
+                            </td>
                         </tr>
                     <?php }?>
                     </tbody>

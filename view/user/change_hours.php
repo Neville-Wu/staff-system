@@ -16,7 +16,7 @@
 
                     <div class="form-group">
                         <label for="hours">Change Hours *</label>
-                        <input type="number" id="hours" class="form-control" name="hours" value="<?= $user['work_hours']?>" required="">
+                        <input type="number" id="hours" class="form-control" name="hours" value="<?= $user['work_hours']?>"  min="0" max="100" required="">
                     </div>
                 </div>
                 <div class="card-footer">

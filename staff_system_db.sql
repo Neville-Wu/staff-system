@@ -43,7 +43,7 @@ CREATE TABLE `notification` (
 --
 
 INSERT INTO `notification` (`id`, `user_id`, `message`, `status`, `datetime`) VALUES
-(1, 1, 'Your work hours have been changed to 20.', 'read', '2021-05-22 23:15:00');
+(1, 1, 'Your work hours have been changed to 20 hours per week.', 'read', '2021-05-22 23:15:00');
 
 -- --------------------------------------------------------
 

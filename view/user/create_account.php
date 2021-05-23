@@ -19,7 +19,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="email">Email *</label>
-                            <input type="text" class="form-control" value="<?= isset($data['email'])?$data['email']:''?>" id="email" name="user[email]" required>
+                            <input type="email" class="form-control" value="<?= isset($data['email'])?$data['email']:''?>" id="email" name="user[email]" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="password">Password *</label>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="work_hours">Work Hours *</label>
-                            <input type="text" class="form-control" value="<?= isset($data['work_hours'])?$data['work_hours']:''?>" id="work_hours" name="user[work_hours]" required>
+                            <input type="number" class="form-control" value="<?= isset($data['work_hours'])?$data['work_hours']:20?>" id="work_hours" name="user[work_hours]" min="0" max="100" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="role">Role *</label>

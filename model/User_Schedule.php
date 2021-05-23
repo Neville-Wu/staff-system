@@ -61,10 +61,10 @@ class User_Schedule extends DB
      * Get remain hours
      * @return DB
      */
-    public static function getRemainHours()
+    public static function getRemainHours($date_start, $date_end)
     {
         return self::table(self::$table_name, 'user_id, SUM(TIMESTAMPDIFF(HOUR,start_time,end_time)) AS hours')
-            ->condition('join schedule on schedule.id=schedule_id where status="Accepted" group by user_id');
+            ->condition('join schedule on schedule.id=schedule_id where status="Accepted" and start_time >= "'.$date_start.'" and end_time < "'.$date_end.'" group by user_id');
     }
 
 }
