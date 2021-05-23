@@ -1,9 +1,9 @@
 <section class="section">
     <div class="section-header">
-        <h1>Create new account</h1>
+        <h1>Create New Account</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="<?= Helpers::url('index/index')?>">Dashboard</a></div>
-            <div class="breadcrumb-item">Create new account</div>
+            <div class="breadcrumb-item">Create New Account</div>
         </div>
     </div>
 

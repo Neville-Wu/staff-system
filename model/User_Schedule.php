@@ -4,6 +4,11 @@ class User_Schedule extends DB
 {
     public static $table_name = 'user_schedule';
 
+
+    /**
+     * @param string $id
+     * @return DB
+     */
     public static function get($id = '')
     {
         if ($id != '') {
@@ -12,14 +17,12 @@ class User_Schedule extends DB
         return self::table(self::$table_name);
     }
 
-    public static function insert($user_id = '', $schedule_id = '')
-    {
-        if ($start_time <= $end_time && $location != '') {
-            return DB::insert(self::$table_name, ['user_id' => $user_id, 'schedule_id' => $schedule_id]);
-        }
-        return null;
-    }
 
+    /**
+     * Get allocated schedule
+     * @param string $id
+     * @return DB
+     */
     public static function getAllocateSchedule($id = '')
     {
         if ($id != '') {
@@ -28,6 +31,12 @@ class User_Schedule extends DB
         return self::table(self::$table_name);
     }
 
+
+    /**
+     * Get allocated staffs
+     * @param string $id
+     * @return DB
+     */
     public static function getAllocateStaff($id = '')
     {
         if ($id != '') {
@@ -36,11 +45,22 @@ class User_Schedule extends DB
         return self::table(self::$table_name);
     }
 
+
+    /**
+     * Allocate a staff to a schedule
+     * @param $post
+     * @return bool|false|PDOStatement
+     */
     public static function allocate($post)
     {
         return DB::insert(self::$table_name, ['user_id' => $post['u_id'], 'schedule_id' => $post['s_id']]);
     }
 
+
+    /**
+     * Get remain hours
+     * @return DB
+     */
     public static function getRemainHours()
     {
         return self::table(self::$table_name, 'user_id, SUM(TIMESTAMPDIFF(HOUR,start_time,end_time)) AS hours')

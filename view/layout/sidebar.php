@@ -10,7 +10,7 @@
 
         <li class="dropdown dropdown-list-toggle">
             <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg
-            <?= count(User::getNoteProcess()) ? 'beep' : '';?>"><i class="far fa-bell"></i></a>
+            <?= count(User::getNoteProcess()) || count(Notification::getUnreadNote()) ? 'beep' : '';?>"><i class="far fa-bell"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
                 <div class="dropdown-header">Notifications
                     <!--<div class="float-right">
@@ -22,7 +22,7 @@
                     <div class="dropdown-item dropdown-item-unread">
                         <?php foreach (User::getNoteProcess() as $u) {?>
                             <div class="dropdown-item-icon bg-primary text-white">
-                                <i class="fas fa-code"></i>
+                                <i class="fas fa-clipboard-list"></i>
                             </div>
                             <div class="dropdown-item-desc">
                                 Are you satisfied with this allocation?
@@ -31,6 +31,16 @@
                                     <a href="<?= Helpers::url('user/setScheduleStatus', ['request' => 'Accepted', 'id'=>$u['s_id']]) ?>" class="btn btn-success btn-sm">Accept</a>
                                     <a href="<?= Helpers::url('user/setScheduleStatus', ['request' => 'Rejected', 'id'=>$u['s_id']]) ?>" class="btn btn-danger btn-sm">Reject</a>
                                 </div>
+                            </div>
+                        <?php }?>
+
+                        <?php foreach (Notification::getUnreadNote() as $u) {?>
+                            <div class="dropdown-item-icon bg-info text-white">
+                                <i class="fas fa-comment-dots"></i>
+                            </div>
+                            <div class="dropdown-item-desc">
+                                <?= $u['message'];?>
+                                <div class="time"><?= $u['datetime']?></div>
                             </div>
                         <?php }?>
                     </div>
@@ -69,12 +79,6 @@
             <a href="index.php">SS</a>
         </div>
         <?php include_once "navigation.php"; ?>
-
-        <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Documentation
-            </a>
-        </div>
     </aside>
 </div>
 

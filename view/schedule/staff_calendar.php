@@ -2,21 +2,16 @@
 
 <section class="section">
     <div class="section-header">
-        <h1>Staff Calendar</h1>
+        <h1>My Calendar</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="<?= Helpers::url('index/index')?>">Dashboard</a></div>
-            <div class="breadcrumb-item">Staff Calendar</div>
+            <div class="breadcrumb-item">My Calendar</div>
         </div>
     </div>
 
     <div class="section-body">
         <div class="card">
             <div class="card-body">
-                <div class="mb-4">
-                    <a class="btn btn-success" href="<?= Helpers::url('timeStatus/add') ?>">
-                        <i class="far fa-calendar-plus"></i> <span>Add Time Status</span>
-                    </a>
-                </div>
                 <div id="staff_calendar"></div>
             </div>
         </div>

@@ -4,7 +4,7 @@ class ScheduleController extends Controller
 {
     public $page_restriction = [
         'staff' => [],
-        'manager' => ['add', 'list', 'managerCalendar']
+        'manager' => ['add', 'list', 'editDuration', 'scheduleDetail', 'managerCalendar', 'editDuration']
     ];
 
     public function __construct()
@@ -39,6 +39,7 @@ class ScheduleController extends Controller
         }
     }
 
+
     public function editDuration()
     {
         if (isset($_POST['schedule'])) {
@@ -53,6 +54,7 @@ class ScheduleController extends Controller
             Helpers::render('schedule/change_duration', ['schedule'=>$schedule]);
         }
     }
+
 
     public function scheduleDetail()
     {
@@ -128,15 +130,22 @@ class ScheduleController extends Controller
     }
 
 
-    public function getListJson()
+    public function allocationHistory()
     {
-        echo json_encode(Schedule::get()->all());
+        $history = User_Schedule::getAllocateSchedule($_SESSION['user']['id'])->all();
+        Helpers::render('schedule/allocation_history', ['history' => $history]);
     }
 
 
     public function staffCalendar()
     {
         Helpers::render('schedule/staff_calendar', [],['module_library/fullcalendar/dist/fullcalendar.min.css'],['module_library/fullcalendar/dist/fullcalendar.min.js','assets/js/modules-calendar.js']);
+    }
+
+
+    public function getListJson()
+    {
+        echo json_encode(Schedule::get()->all());
     }
 
 
@@ -151,11 +160,5 @@ class ScheduleController extends Controller
     {
         $time_status = TimeStatus::get($_SESSION['user']["id"])->all();
         echo json_encode($time_status);
-    }
-
-    public function getAllocationHistory()
-    {
-        $history = User_Schedule::getAllocateSchedule($_SESSION['user']['id'])->all();
-        Helpers::render('schedule/allocation_history', ['history' => $history]);
     }
 }

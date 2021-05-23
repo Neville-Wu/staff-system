@@ -32,7 +32,7 @@
                             <td><?= $user['work_hours']?></td>
                             <td><?= $user['role']?></td>
                             <td>
-                                <div class="badge badge-secondary"><?= $user['mode'] ?></div>
+                                <span class="badge badge-info text-uppercase"><?= $user['mode'] ?></span>
                             </td>
                             <td>
                                 <a href="<?= Helpers::url('user/changeHours',['id'=>$user['id']]) ?>" class="btn btn-primary">Change Work Hours</a>

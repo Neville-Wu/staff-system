@@ -34,7 +34,7 @@
                             <td><?= $n['status']?></td>
                             <td>
                                 <?php if ($n['status'] == 'In Processing') {?>
-                                    <p>Are you satisfied with this allocation?</p>
+                                    <span>Are you satisfied with this allocation?</span>
                                 <?php }?>
                             </td>
                             <td>

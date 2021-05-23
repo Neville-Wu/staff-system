@@ -5,7 +5,7 @@ class UserController extends Controller
 {
     public $page_restriction = [
         'staff' => [],
-        'manager' => ['listUser']
+        'manager' => ['listUser', 'createAccount', 'changeHours', 'createAccount', 'activateAccount', 'deactivateAccount']
     ];
 
     public function __construct()
@@ -97,6 +97,9 @@ class UserController extends Controller
     }
 
 
+    /**
+     * Change Work Hours
+     */
     public function changeHours()
     {
         if (isset($_POST['hours'])) {
@@ -117,7 +120,7 @@ class UserController extends Controller
 
 
     /**
-     * setScheduleStatus
+     * Accept or Reject Schedule Allocation
      */
     public function setScheduleStatus()
     {
@@ -131,14 +134,17 @@ class UserController extends Controller
                 $u = User::setAllocationStatus($value);
             }
             if ($u) {
-                Helpers::alert('index/index', 'Setting successful!');
+                Helpers::alert('user/listNotification', 'Setting successful!');
             } else {
-                Helpers::alert('index/index', 'Setting failed!');
+                Helpers::alert('user/listNotification', 'Setting failed!');
             }
         }
     }
 
 
+    /**
+     * List all notification
+     */
     public function listNotification()
     {
         if (isset($_GET['read'])) {
@@ -153,6 +159,10 @@ class UserController extends Controller
         Helpers::render('user/notification', ['schedule'=>$notices[0], 'notification'=>$notices[1]]);
     }
 
+
+    /**
+     * Create New Account
+     */
     public function createAccount()
     {
         if (isset($_POST['user'])) {
@@ -169,22 +179,30 @@ class UserController extends Controller
         }
     }
 
+
+    /**
+     * Activate Account
+     */
     public function activateAccount()
     {
         if (isset($_GET['id'])) {
             $value = ['mode' => 'activated', 'id' => $_GET['id']];
-            $us = User::activateAccount($value);
+            $us = User::setAccountMode($value);
             if ($us) {
                 Helpers::alert('user/listUser', 'Activated successfully!');
             }
         }
     }
 
+
+    /**
+     * Deactivate Account
+     */
     public function deactivateAccount()
     {
         if (isset($_GET['id'])) {
             $value = ['mode' => 'deactivated', 'id' => $_GET['id']];
-            $us = User::deactivateAccount($value);
+            $us = User::setAccountMode($value);
             if ($us) {
                 Helpers::alert('user/listUser', 'Deactivated successfully!');
             }

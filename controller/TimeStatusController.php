@@ -3,7 +3,7 @@
 class TimeStatusController extends Controller
 {
     public $page_restriction = [
-        'staff' => ['add', 'list', 'staffCalendar'],
+        'staff' => ['add', 'list'],
         'manager' => []
     ];
 
